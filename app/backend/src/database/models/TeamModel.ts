@@ -1,13 +1,13 @@
-import { INTEGER, Model, STRING } from 'sequelize';
+import { INTEGER, STRING, Model } from 'sequelize';
 import db from '.';
-import Match from './MatchesModel';
+import Match from './MatchModel';
 
-class Teams extends Model {
+class Team extends Model {
   declare id: number;
   declare teamName: string;
 }
 
-Teams.init({
+Team.init({
   id: { type: INTEGER, autoIncrement: true, primaryKey: true },
 
   teamName: { type: STRING, allowNull: false },
@@ -19,7 +19,7 @@ Teams.init({
   tableName: 'teams',
 });
 
-Teams.hasMany(Match, { foreignKey: 'homeTeam', as: 'homeTeam' });
-Teams.hasMany(Match, { foreignKey: 'awayTeam', as: 'awayTeam' });
+Team.hasMany(Match, { foreignKey: 'homeTeam', as: 'homeTeam' });
+Team.hasMany(Match, { foreignKey: 'awayTeam', as: 'awayTeam' });
 
-export default Teams;
+export default Team;

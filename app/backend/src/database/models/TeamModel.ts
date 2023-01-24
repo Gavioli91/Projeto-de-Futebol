@@ -2,8 +2,7 @@ import { INTEGER, STRING, Model } from 'sequelize';
 import db from '.';
 import Match from './MatchModel';
 
-class Team extends Model {
-  declare id: number;
+class Team extends Model { declare id: number;
   declare teamName: string;
 }
 

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt = require('jsonwebtoken');
 
-const blocked = process.env.BLOCKED_JWT;
+const blocked = process.env.JWT_SECRET;
 
 const loginOk = (
   req: Request,
@@ -14,8 +14,10 @@ const loginOk = (
       message: 'All fields must be filled',
     });
   }
+
   next();
 };
+
 const symbolOk = (
   req: Request,
   res: Response,
@@ -26,15 +28,15 @@ const symbolOk = (
     return res.status(401).json({
       message: 'Token not found',
     });
-  }
-  try {
+  } try {
     const peopleUser = jwt.verify(symbol, blocked as string);
     req.body.user = peopleUser;
 
     next();
   } catch (error) {
-    return res.status(400)
-      .json({ message: 'Expired or invalid token' });
+    return res.status(400).json({
+      message: 'Expired or invalid token',
+    });
   }
 };
 

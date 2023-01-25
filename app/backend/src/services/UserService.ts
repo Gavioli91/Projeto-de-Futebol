@@ -3,8 +3,8 @@ import { iUser } from '../interfaces';
 
 const userEmail = async (email: string):
 Promise<iUser> => {
-  const peopleUser = await
-  UserModel.findOne({ where: { email } });
+  const peopleUser = await UserModel.findOne({ where: { email } });
+
   return { id: peopleUser?.dataValues.id,
     username: peopleUser?.dataValues.username,
     role: peopleUser?.dataValues.role,

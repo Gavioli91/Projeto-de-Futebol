@@ -5,7 +5,6 @@ import UserController from '../controllers/UserController';
 const path = Router();
 
 path.post('/', loginOk, UserController.userEmail);
-
 path.get('/validate', symbolOk, UserController.idOfUser);
 
 export default path;

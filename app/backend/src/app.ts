@@ -1,5 +1,5 @@
 import * as express from 'express';
-import UserRouter from './routes/UserRouter';
+import { UserRouter, TeamRouter } from './routes/index';
 
 class App {
   public app: express.Express;
@@ -14,7 +14,10 @@ class App {
     this.app.get('/', (req, res) => res.json({ ok: true }));
   }
 
-  private routes(): void { this.app.use('/login', UserRouter); }
+  private routes(): void {
+    this.app.use('/login', UserRouter);
+    this.app.use('/teams', TeamRouter);
+  }
 
   private config():void {
     const accessControl: express.RequestHandler = (_req, res, next) => {

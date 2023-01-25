@@ -1,8 +1,8 @@
 import UserModel from '../database/models/UserModel';
-import { iUser } from '../interfaces';
+import { IUser } from '../interfaces/IUser';
 
 const userEmail = async (email: string):
-Promise<iUser> => {
+Promise<IUser> => {
   const peopleUser = await UserModel.findOne({ where: { email } });
 
   return { id: peopleUser?.dataValues.id,
@@ -14,11 +14,11 @@ Promise<iUser> => {
 };
 
 const idOfUser = async (id: number):
-Promise<iUser> => {
+Promise<IUser> => {
   const peopleUser = await
   UserModel.findByPk(id, {
     attributes: { exclude: ['password'] } });
-  return peopleUser as unknown as iUser;
+  return peopleUser as unknown as IUser;
 };
 
 export default { userEmail, idOfUser };

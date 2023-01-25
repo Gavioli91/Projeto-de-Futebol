@@ -2,6 +2,7 @@ import * as sinon from 'sinon';
 import * as chai from 'chai';
 // @ts-ignore
 import chaiHttp = require('chai-http');
+import Codes from '../utils/Codes'
 import { app } from '../app';
 
 chai.use(chaiHttp);
@@ -10,7 +11,7 @@ const { expect } = chai;
 
 describe('Fazendo o teste do endpoint /login', () => {
   afterEach(sinon.restore);
-  it('Fazendo login com sucesso', async () => {
+  test('Fazendo login com sucesso', async () => {
     const answer = await chai.request(app).post('/login').send({
       email: 'admin@admin.com',
       password: 'secret_admin',
@@ -18,7 +19,20 @@ describe('Fazendo o teste do endpoint /login', () => {
 
     expect(answer.status).to.equal(200);
     expect(answer.body).to.deep.equal({
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjU0NTI3MTg5fQ.XS_9AA82iNoiVaASi0NtJpqOQ_gHSHhxrpIdigiT-fc',
+      symbol: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjU0NTI3MTg5fQ.XS_9AA82iNoiVaASi0NtJpqOQ_gHSHhxrpIdigiT-fc',
+    });
+  });
+
+  test('Não é possível realizar o login sem colocar o e-mail',
+  async () => {
+    const answer = await
+    chai.request(app).post('/login').send({
+      password: 'secret_admin',
+    });
+
+    expect(answer.status).to.equal(Codes.badRequest);
+    expect(answer.body).to.deep.equal({
+      message: 'All fields must be filled',
     });
   });
    /**

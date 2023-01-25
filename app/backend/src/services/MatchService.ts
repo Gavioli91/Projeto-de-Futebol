@@ -9,6 +9,7 @@ class MatchService {
       { model: TeamModel, as: 'awayTeam', attributes: ['teamName'] },
     ],
     });
+
     if (inProgres === undefined) return games;
     return games.filter((game) =>
       game.inProgress.toString() === inProgres);

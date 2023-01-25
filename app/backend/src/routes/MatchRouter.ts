@@ -8,6 +8,6 @@ const gameController = new MatchController(gameService);
 
 const gameRouter = Router();
 
-gameRouter.get('/', gameController.createGame);
+gameRouter.get('/', gameController.createGames);
 
 export default gameRouter;

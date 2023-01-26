@@ -30,8 +30,8 @@ class MatchController {
     res: Response,
   ) => {
     const { id } = req.params;
-    const match = req.body;
-    await this.gamesService.updateGame(+(id), match);
+    const game = req.body;
+    await this.gamesService.updateGame(+(id), game);
     return res.status(Codes.ok).json({
       message: 'Updated',
     });
@@ -41,9 +41,9 @@ class MatchController {
     req: Request,
     res: Response,
   ) => {
-    const credentials = req.body;
+    const released = req.body;
     const newGame = await this.gamesService
-      .saveGame(credentials);
+      .saveGame(released);
     return res.status(Codes.created).json(newGame);
   };
 }

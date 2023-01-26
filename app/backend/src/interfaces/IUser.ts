@@ -1,12 +1,12 @@
-interface iLogin {
+interface ILogin {
   email: string;
   password: string;
 }
 
-interface IUser extends iLogin {
+interface IUser extends ILogin {
   id?: number;
   username: string;
   role: string;
 }
 
-export { iLogin, IUser };
+export { ILogin, IUser };

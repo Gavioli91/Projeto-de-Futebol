@@ -2,7 +2,7 @@ import { Router } from 'express';
 import MatchService from '../services/MatchService';
 import MatchController from '../controllers/MatchController';
 import MatchOk from '../middlewares/MatchOk';
-import { symbolOk } from '../middlewares/loginOk';
+import { symbolOk } from '../middlewares/LoginOk';
 
 const gameService = new MatchService();
 

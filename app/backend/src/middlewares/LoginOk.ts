@@ -4,7 +4,7 @@ import Codes from '../utils/Codes';
 
 const blocked = process.env.JWT_SECRET;
 
-const loginOk = (
+const LoginOk = (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -41,4 +41,4 @@ const symbolOk = (
   }
 };
 
-export { loginOk, symbolOk };
+export { LoginOk, symbolOk };

@@ -13,15 +13,15 @@ class Match extends Model {
 Match.init({
   id: { type: INTEGER, autoIncrement: true, primaryKey: true },
 
-  homeTeamId: { type: INTEGER, allowNull: false },
+  homeTeamId: { type: INTEGER },
 
-  homeTeamGoals: { type: INTEGER, allowNull: false },
+  homeTeamGoals: { type: INTEGER },
 
-  awayTeamId: { type: INTEGER, allowNull: false },
+  awayTeamId: { type: INTEGER },
 
-  awayTeamGoals: { type: INTEGER, allowNull: false },
+  awayTeamGoals: { type: INTEGER },
 
-  inProgress: { type: BOOLEAN, allowNull: false },
+  inProgress: { type: BOOLEAN },
 }, {
   underscored: true,
   sequelize: db,

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt = require('jsonwebtoken');
+import Codes from '../utils/Codes';
 
 const blocked = process.env.JWT_SECRET;
 
@@ -10,7 +11,7 @@ const loginOk = (
 ) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    return res.status(400).json({
+    return res.status(Codes.badRequest).json({
       message: 'All fields must be filled',
     });
   }
@@ -25,7 +26,7 @@ const symbolOk = (
 ) => {
   const { authorization: symbol } = req.headers;
   if (!symbol) {
-    return res.status(401).json({
+    return res.status(Codes.badRequest).json({
       message: 'Token not found',
     });
   } try {
@@ -34,8 +35,8 @@ const symbolOk = (
 
     next();
   } catch (error) {
-    return res.status(400).json({
-      message: 'Expired or invalid token',
+    return res.status(Codes.authenticationError).json({
+      message: 'Token must be a valid token',
     });
   }
 };

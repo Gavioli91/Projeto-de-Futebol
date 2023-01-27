@@ -13,7 +13,7 @@ class LeaderboardController {
     LeaderboardService.createAllEquipsHome();
     const order = Sort(results);
 
-    return res.status(Codes.ok).json(order);
+    return res.status(200).json(order);
   }
 
   static async createAllEquipsAway(

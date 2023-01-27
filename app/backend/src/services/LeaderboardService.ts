@@ -92,21 +92,21 @@ class LeaderboardService {
   }
 
   static async sumAllPoints(): Promise<IBoard[]> {
-    const home = await
+    const homeEquip = await
     LeaderboardService.createAllEquipsHome();
 
-    const away = await
+    const awayEquip = await
     LeaderboardService.createAllEquipsAway();
 
-    const allPoints = home.map((equip, i) =>
+    const allPoints = homeEquip.map((equip, i) =>
       ({ name: equip.name,
-        totalPoints: equip.totalPoints + away[i].totalPoints,
-        totalGames: equip.totalGames + away[i].totalGames,
-        totalVictories: equip.totalVictories + away[i].totalVictories,
-        totalDraws: equip.totalDraws + away[i].totalDraws,
-        totalLosses: equip.totalLosses + away[i].totalLosses,
-        goalsFavor: equip.goalsFavor + away[i].goalsFavor,
-        goalsOwn: equip.goalsOwn + away[i].goalsOwn,
+        totalPoints: equip.totalPoints + awayEquip[i].totalPoints,
+        totalGames: equip.totalGames + awayEquip[i].totalGames,
+        totalVictories: equip.totalVictories + awayEquip[i].totalVictories,
+        totalDraws: equip.totalDraws + awayEquip[i].totalDraws,
+        totalLosses: equip.totalLosses + awayEquip[i].totalLosses,
+        goalsFavor: equip.goalsFavor + awayEquip[i].goalsFavor,
+        goalsOwn: equip.goalsOwn + awayEquip[i].goalsOwn,
       }));
     return allPoints;
   }

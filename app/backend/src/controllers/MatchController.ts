@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Codes from '../utils/Codes';
+// import Codes from '../utils/Codes';
 import MatchService from '../services/MatchService';
 
 class MatchController {
@@ -11,7 +11,7 @@ class MatchController {
     const games = await
     this.gamesService
       .createGames(inProgress as string | undefined);
-    res.status(Codes.ok).json(games);
+    res.status(200).json(games);
   };
 
   public endGame = async (
@@ -20,7 +20,7 @@ class MatchController {
   ) => {
     const { id } = req.params;
     await this.gamesService.endGame(+(id));
-    return res.status(Codes.ok).json({
+    return res.status(200).json({
       message: 'Finished',
     });
   };
@@ -32,7 +32,7 @@ class MatchController {
     const { id } = req.params;
     const game = req.body;
     await this.gamesService.updateGame(+(id), game);
-    return res.status(Codes.ok).json({
+    return res.status(200).json({
       message: 'Updated',
     });
   };
@@ -44,7 +44,7 @@ class MatchController {
     const released = req.body;
     const newGame = await this.gamesService
       .saveGame(released);
-    return res.status(Codes.created).json(newGame);
+    return res.status(200).json(newGame);
   };
 }
 

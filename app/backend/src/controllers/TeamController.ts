@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Codes from '../utils/Codes';
+// import Codes from '../utils/Codes';
 import TeamService from '../services/TeamService';
 
 class UserController {
@@ -8,7 +8,7 @@ class UserController {
   Promise<void> => {
     const equips = await
     this.UserService.createTeams();
-    res.status(Codes.ok).json(equips);
+    res.status(200).json(equips);
   };
 
   public idOfTeam = async (req: Request, res: Response):
@@ -16,7 +16,7 @@ class UserController {
     const { id } = req.params;
     const equips = await
     this.UserService.idOfTeam(+(id));
-    res.status(Codes.ok).json(equips);
+    res.status(200).json(equips);
   };
 }
 

@@ -25,7 +25,7 @@ class LeaderboardController {
     LeaderboardService.createAllEquipsAway();
     const order = Sort(results);
 
-    return res.status(Codes.ok).json(order);
+    return res.status(200).json(order);
   }
 
   static async createAllEquips(
@@ -37,7 +37,7 @@ class LeaderboardController {
     LeaderboardService.createAllEquips();
     const order = Sort(results);
 
-    return res.status(Codes.ok).json(order);
+    return res.status(200).json(order);
   }
 }
 

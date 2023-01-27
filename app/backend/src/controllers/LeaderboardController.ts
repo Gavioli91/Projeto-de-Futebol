@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import LeaderboardService from '../services/LeaderboardService';
 import Sort from '../option/Scores';
-import Codes from '../utils/Codes';
+// import Codes from '../utils/Codes';
 
 class LeaderboardController {
   static async createAllEquipsHome(

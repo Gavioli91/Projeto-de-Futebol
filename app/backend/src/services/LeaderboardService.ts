@@ -22,8 +22,8 @@ class LeaderboardService {
   static async createUpdatesEquipsHome():
   Promise<MatchModel[][]> {
     const equips = await TeamModel.findAll();
-    const promises = equips.map((team) =>
-      LeaderboardService.createGameEquipHome(team.id));
+    const promises = equips.map((equip) =>
+      LeaderboardService.createGameEquipHome(equip.id));
     const games = await Promise.all(promises);
     return games;
   }
@@ -32,19 +32,19 @@ class LeaderboardService {
   Promise<ILeaderboard[]> {
     const equips = await TeamModel.findAll();
     const data = await LeaderboardService.createUpdatesEquipsHome();
-    const newUpdate = data.map((team, index) => ({
-      name: equips[index].teamName,
-      totalPoints: team.reduce(homePoints, 0),
-      totalGames: team.length,
-      totalVictories: team.reduce(homeWins, 0),
-      totalDraws: team.reduce(table, 0),
-      totalLosses: team.reduce(homeDefeats, 0),
-      goalsFavor: team.reduce(homeScoreFavor, 0),
-      goalsOwn: team.reduce(homeScoreOwn, 0),
+    const newUpdate = data.map((equip, i) => ({
+      name: equips[i].teamName,
+      totalPoints: equip.reduce(homePoints, 0),
+      totalGames: equip.length,
+      totalVictories: equip.reduce(homeWins, 0),
+      totalDraws: equip.reduce(table, 0),
+      totalLosses: equip.reduce(homeDefeats, 0),
+      goalsFavor: equip.reduce(homeScoreFavor, 0),
+      goalsOwn: equip.reduce(homeScoreOwn, 0),
       goalsBalance:
-      team.reduce(homeScoreFavor, 0) - team.reduce(homeScoreOwn, 0),
+      equip.reduce(homeScoreFavor, 0) - equip.reduce(homeScoreOwn, 0),
       efficiency:
-      ((team.reduce(homePoints, 0) / (team.length * 3)) * 100).toFixed(2),
+      ((equip.reduce(homePoints, 0) / (equip.length * 3)) * 100).toFixed(2),
     }));
     return newUpdate;
   }
@@ -64,8 +64,8 @@ class LeaderboardService {
   static async createUpdatesEquipAway():
   Promise<MatchModel[][]> {
     const equips = await TeamModel.findAll();
-    const promises = equips.map((team) =>
-      LeaderboardService.createGameEquipsAway(team.id));
+    const promises = equips.map((equip) =>
+      LeaderboardService.createGameEquipsAway(equip.id));
     const games = await Promise.all(promises);
     return games;
   }
@@ -74,21 +74,21 @@ class LeaderboardService {
   Promise<ILeaderboard[]> {
     const equips = await TeamModel.findAll();
     const data = await LeaderboardService.createUpdatesEquipAway();
-    const newInfo = data.map((team, index) => ({
-      name: equips[index].teamName,
-      totalPoints: team.reduce(awayPoints, 0),
-      totalGames: team.length,
-      totalVictories: team.reduce(awayWins, 0),
-      totalDraws: team.reduce(table, 0),
-      totalLosses: team.reduce(awayDefeats, 0),
-      goalsFavor: team.reduce(awayScoreFavor, 0),
-      goalsOwn: team.reduce(awayScoreOwn, 0),
+    const newUpdate = data.map((equip, i) => ({
+      name: equips[i].teamName,
+      totalPoints: equip.reduce(awayPoints, 0),
+      totalGames: equip.length,
+      totalVictories: equip.reduce(awayWins, 0),
+      totalDraws: equip.reduce(table, 0),
+      totalLosses: equip.reduce(awayDefeats, 0),
+      goalsFavor: equip.reduce(awayScoreFavor, 0),
+      goalsOwn: equip.reduce(awayScoreOwn, 0),
       goalsBalance:
-      team.reduce(awayScoreFavor, 0) - team.reduce(awayScoreOwn, 0),
+      equip.reduce(awayScoreFavor, 0) - equip.reduce(awayScoreOwn, 0),
       efficiency:
-      ((team.reduce(awayPoints, 0) / (team.length * 3)) * 100).toFixed(2),
+      ((equip.reduce(awayPoints, 0) / (equip.length * 3)) * 100).toFixed(2),
     }));
-    return newInfo;
+    return newUpdate;
   }
 
   static async sumAllPoints(): Promise<IBoard[]> {
@@ -98,15 +98,15 @@ class LeaderboardService {
     const away = await
     LeaderboardService.createAllEquipsAway();
 
-    const allPoints = home.map((team, index) =>
-      ({ name: team.name,
-        totalPoints: team.totalPoints + away[index].totalPoints,
-        totalGames: team.totalGames + away[index].totalGames,
-        totalVictories: team.totalVictories + away[index].totalVictories,
-        totalDraws: team.totalDraws + away[index].totalDraws,
-        totalLosses: team.totalLosses + away[index].totalLosses,
-        goalsFavor: team.goalsFavor + away[index].goalsFavor,
-        goalsOwn: team.goalsOwn + away[index].goalsOwn,
+    const allPoints = home.map((equip, i) =>
+      ({ name: equip.name,
+        totalPoints: equip.totalPoints + away[i].totalPoints,
+        totalGames: equip.totalGames + away[i].totalGames,
+        totalVictories: equip.totalVictories + away[i].totalVictories,
+        totalDraws: equip.totalDraws + away[i].totalDraws,
+        totalLosses: equip.totalLosses + away[i].totalLosses,
+        goalsFavor: equip.goalsFavor + away[i].goalsFavor,
+        goalsOwn: equip.goalsOwn + away[i].goalsOwn,
       }));
     return allPoints;
   }

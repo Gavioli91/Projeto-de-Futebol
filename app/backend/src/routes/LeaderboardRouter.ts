@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import LeaderboardController from '../controllers/LeaderboardController';
 
-const path = Router();
+const leaderboardController = Router();
 
-path.get('/', LeaderboardController.createAllEquips);
-path.get('/home', LeaderboardController.createAllEquipsHome);
-path.get('/away', LeaderboardController.createAllEquipsAway);
+leaderboardController.get('/', LeaderboardController.createAllEquips);
+leaderboardController.get('/home', LeaderboardController.createAllEquipsHome);
+leaderboardController.get('/away', LeaderboardController.createAllEquipsAway);
 
-export default path;
+export default leaderboardController;

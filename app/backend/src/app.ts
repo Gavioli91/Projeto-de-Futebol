@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { UserRouter, TeamRouter,
-  MatchRouter, LeaderboardRouter } from './routes/index';
+  gameRouter, LeaderboardRouter } from './routes/index';
 
 class App {
   public app: express.Express;
@@ -18,7 +18,7 @@ class App {
   private routes(): void {
     this.app.use('/login', UserRouter);
     this.app.use('/teams', TeamRouter);
-    this.app.use('/matches', MatchRouter);
+    this.app.use('/matches', gameRouter);
     this.app.use('/leaderboard', LeaderboardRouter);
   }
 

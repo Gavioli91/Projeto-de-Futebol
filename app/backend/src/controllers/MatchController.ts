@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-// import Codes from '../utils/Codes';
+import Codes from '../utils/Codes';
 import MatchService from '../services/MatchService';
 
 class MatchController {
@@ -44,7 +44,7 @@ class MatchController {
     const released = req.body;
     const newGame = await this.gamesService
       .saveGame(released);
-    return res.status(200).json(newGame);
+    return res.status(Codes.created).json(newGame);
   };
 }
 

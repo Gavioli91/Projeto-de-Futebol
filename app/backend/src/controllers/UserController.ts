@@ -2,7 +2,7 @@ import * as bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 import UserService from '../services/UserService';
-// import Codes from '../utils/Codes';
+import Codes from '../utils/Codes';
 
 require('dotenv/config');
 
@@ -13,12 +13,12 @@ const userEmail = async (req: Request, res: Response) => {
   const peopleUser = await UserService.userEmail(email);
 
   if (!peopleUser || !peopleUser.id) {
-    return res.status(401).json({
+    return res.status(Codes.authenticationError).json({
       message: 'Incorrect email or password',
     });
   }
   if (!bcrypt.compareSync(password, peopleUser.password)) {
-    return res.status(401).json({
+    return res.status(Codes.authenticationError).json({
       message: 'Incorrect email or password',
     });
   }

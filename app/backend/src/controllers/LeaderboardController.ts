@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import LeaderboardService from '../services/LeaderboardService';
 import Sort from '../option/Scores';
-// import Codes from '../utils/Codes';
+import Codes from '../utils/Codes';
 
 class LeaderboardController {
   static async createAllEquipsHome(
@@ -13,7 +13,7 @@ class LeaderboardController {
     LeaderboardService.createAllEquipsHome();
     const order = Sort(results);
 
-    return res.status(200).json(order);
+    return res.status(Codes.ok).json(order);
   }
 
   static async createAllEquipsAway(
@@ -25,7 +25,7 @@ class LeaderboardController {
     LeaderboardService.createAllEquipsAway();
     const order = Sort(results);
 
-    return res.status(200).json(order);
+    return res.status(Codes.ok).json(order);
   }
 
   static async createAllEquips(
@@ -37,7 +37,7 @@ class LeaderboardController {
     LeaderboardService.createAllEquips();
     const order = Sort(results);
 
-    return res.status(200).json(order);
+    return res.status(Codes.ok).json(order);
   }
 }
 

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import LeaderboardService from '../services/LeaderboardService';
-import Sort from '../option/Scores';
+import Score from '../option/Scores';
 import Codes from '../utils/Codes';
 
 class LeaderboardController {
@@ -11,7 +11,7 @@ class LeaderboardController {
     Promise<Response> {
     const results = await
     LeaderboardService.createAllEquipsHome();
-    const order = Sort(results);
+    const order = Score(results);
 
     return res.status(Codes.ok).json(order);
   }
@@ -23,7 +23,7 @@ class LeaderboardController {
     Promise<Response> {
     const results = await
     LeaderboardService.createAllEquipsAway();
-    const order = Sort(results);
+    const order = Score(results);
 
     return res.status(Codes.ok).json(order);
   }
@@ -35,7 +35,7 @@ class LeaderboardController {
     Promise<Response> {
     const results = await
     LeaderboardService.createAllEquips();
-    const order = Sort(results);
+    const order = Score(results);
 
     return res.status(Codes.ok).json(order);
   }

@@ -1,13 +1,5 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
-
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
-
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+O projeto é um site informativo sobre partidas e classificações de futebol.
+Foi utilizada uma API (aplicando o método TDD) e também para integrar - através do docker-compose - as aplicações são que elas funcionem consumindo um banco de dados.
+O projeto, foi construído com back-end dockerizado, utilizando modelagem de dados através do Sequelize. E a API foi capaz de consumir um front-end já existente no projeto.
+Para adicionar uma partida foi necessário ter um token, sendo assim, a pessoa usuária deverá estar logada para fazer as alterações. Foi feito uma relação entre as tabelas teams e matches para atualizar as partidas.
+O back-end foi implementado nas regras de negócio para popular adequadamente a tabela disponível no front-end que foi mostrada para a pessoa usuária do sistema.
